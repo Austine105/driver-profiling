@@ -61,6 +61,10 @@ class ConfigService {
     return this.getValue('DATABASE_URL', true);
   }
 
+  public getRedisUrl(): string {
+    return this.getValue('REDIS_URL', true)
+  }
+
   public getSequelizeConfig(): SequelizeModuleOptions {
     return {
       dialect: 'postgres',
@@ -78,7 +82,7 @@ const configService = new ConfigService(process.env)
     'JWT_SECRET',
     'EXPIRES_IN',
     'SALT_ROUNDS',
-    'REDIS_PORT'
+    'REDIS_URL'
   ]);
 
 export { configService };

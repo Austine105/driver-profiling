@@ -7,6 +7,7 @@ import { WalletModule } from '../wallet/wallet.module';
 import { ContributionProcessor } from './queue/contribution.processor';
 import { DriverModule } from '../driver/driver.module';
 import { AssociationModule } from '../association/association.module';
+import { configService } from 'src/common/config/config.service';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AssociationModule } from '../association/association.module';
     AssociationModule,
     BullModule.registerQueue({
       name: 'contributions',
+      redis: configService.getRedisUrl(),
     }),
   ],
   providers: [ContributionService, ...ContributionProvider, ContributionProcessor],
